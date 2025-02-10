@@ -19,7 +19,7 @@ struct ContentView: View {
                 Label("Overview", systemImage: "note")
             }
             Tab(content: {
-                HomeView()
+                SettingsView()
             }){
                 Label("Settings", systemImage: "gear")
             }

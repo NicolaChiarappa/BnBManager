@@ -1,37 +1,39 @@
-//
-//  HomeView.swift
-//  BnBManager
-//
-//  Created by Nicola Chiarappa on 10/02/25.
-//
+
+
 
 import SwiftUI
 
 struct HomeView : View{
+    @StateObject var homeViewModel: HomeViewModel = HomeViewModel()
     var body : some View{
         NavigationStack{
             
             ScrollView{
+                
                 TagGroup()
+                Spacer()
+                StatuSection()
+                    .padding()
                 Spacer()
                 ArrivingGuestsSection()
                     .padding()
                 Spacer()
-                Todo()
+                TodoSection()
                     .padding()
             }
-            
+            .scrollIndicators(.hidden)
             .frame(maxWidth: .infinity)
             
+            
             .navigationTitle("Overview")
+            .sheet(isPresented: $homeViewModel.isArrivingActive) {
+                ArrivingGuestPage()
+            }
+            
+            .environmentObject(homeViewModel)
         }
     }
 }
-
-
-
-
-
 
 struct TagGroup: View {
     @State var selected:Int=0
@@ -61,10 +63,6 @@ struct TagGroup: View {
         .frame(maxWidth: .infinity)
     }
 }
-
-
-
-
 
 struct TagLabel: View {
     var index:Int
@@ -116,42 +114,61 @@ struct BookLabel:View{
             }
             .frame(maxWidth: .infinity)
         }
+        .foregroundStyle(.primary)
     }
     
 }
 
 struct TodoLabel:View{
+    
     var details:String
     var index:Int
     var body: some View{
-        HStack{
-            VStack(alignment: .center){
-                Text("\(index)th task to do")
-                    .bold()
-                    .font(.title3)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text("\(self.details)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        LazyVStack(spacing: 12){
+            HStack{
+                VStack(alignment: .trailing){
+                    Text("\(index)th task to do")
+                        .bold()
+                        .font(.title3)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Text("\(self.details)")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                }
+                .frame(maxWidth: .infinity)
                 
+                Button("Done"){}
+                    .background(Color(.systemGreen).opacity(0.5))
+                    .clipShape(.buttonBorder)
+                    .buttonStyle(.bordered)
+                    .foregroundStyle(.primary)
             }
-            .frame(maxWidth: .infinity)
+            Rectangle()
+                .frame(maxWidth: .infinity, maxHeight: 0.3)
+                .foregroundStyle(Color(.systemGray3))
+                .padding(.horizontal, -16)
+                .padding(.vertical, 2)
             
-            Button("Done"){}
-                .buttonStyle(.bordered)
+            
         }
+        .transition(.slide)
+        
     }
     
 }
 
 struct ArrivingGuestsSection: View {
+    @EnvironmentObject var homeViewModel:HomeViewModel
+    
     var body: some View {
         VStack() {
             HStack {
                 HStack {
                     Text("Arriving guests")
-                        .font(.title2)
+                        .font(.title)
                         .bold()
                     Image(systemName: "arrow.down")
+                        .bold()
                     Spacer()
                    
                 }
@@ -163,6 +180,9 @@ struct ArrivingGuestsSection: View {
                     Image(systemName: "chevron.right")
                 }
                 .frame(alignment: .trailing)
+                .onTapGesture {
+                    homeViewModel.isArrivingActive=true
+                }
                
                 
             }
@@ -177,22 +197,29 @@ struct ArrivingGuestsSection: View {
     }
 }
 
-struct Todo:View{
+struct TodoSection:View{
     var body: some View{
         VStack {
             HStack{
                 Text("ToDo")
-                    .font(.title2)
+                    .font(.title)
                     .bold()
                 Image(systemName: "checklist.checked")
+                    .bold()
                 Spacer()
             }
             .frame(alignment: .leading)
             
-            ForEach(0..<9){ i in
-                TodoLabel(details: "Some detail about task", index: i+1)
-                    .padding(.vertical, 4)
+            
+            LazyVStack(alignment: .trailing, spacing: 17){
+                ForEach(0..<8){
+                         i in
+                    TodoLabel(details: "Some detail about task", index: i+1)
+                        .listRowSeparator(.visible)
+                                
                 
+                   
+                }
             }
            
         }
@@ -200,7 +227,54 @@ struct Todo:View{
     }
 }
 
+struct ArrivingGuestPage:View{
+    @EnvironmentObject var homeViewModel:HomeViewModel
+    var body: some View{
+        NavigationStack{
+            List{
+                ForEach(1..<5){ i in
+                    BookLabel(room: i, people: 2*i)
+                }
+            }
+            .listStyle(.plain)
+            
+            .toolbar(){
+                ToolbarItem(placement: .topBarLeading) {
+                    Button("Back") {
+                        homeViewModel.isArrivingActive=false
+                    }
+                }
+                    
+            }
+            .navigationTitle("Arriving guests")
+            .navigationBarTitleDisplayMode(.inline)
+        }
+        
+    }
+}
 
+struct StatuSection:View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text("Available")
+                .frame(alignment: .leading)
+                
+                .font(.title)
+                .bold()
+            HStack{
+                Label("3", systemImage: "square.split.bottomrightquarter")
+                    .font(.title2)
+                    .bold()
+                Label("6", systemImage: "person.3.sequence")
+                    .font(.title2)
+                    .bold()
+                
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        
+    }
+}
 
 
 
