@@ -6,11 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXContainerItemProxy section */
+		A9BC91862D5B8B8800A7DD82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A9C850FC2D515A3800305344 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A9C851032D515A3800305344;
+			remoteInfo = BnBManager;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		A9BC91822D5B8B8800A7DD82 /* BnBManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BnBManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9C851042D515A3800305344 /* BnBManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BnBManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		A9BC91832D5B8B8800A7DD82 /* BnBManagerTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BnBManagerTests;
+			sourceTree = "<group>";
+		};
 		A9C851062D515A3800305344 /* BnBManager */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = BnBManager;
@@ -19,6 +35,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A9BC917F2D5B8B8800A7DD82 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9C851012D515A3800305344 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -33,6 +56,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C851062D515A3800305344 /* BnBManager */,
+				A9BC91832D5B8B8800A7DD82 /* BnBManagerTests */,
 				A9C851052D515A3800305344 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,6 +65,7 @@
 			isa = PBXGroup;
 			children = (
 				A9C851042D515A3800305344 /* BnBManager.app */,
+				A9BC91822D5B8B8800A7DD82 /* BnBManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -48,6 +73,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A9BC91812D5B8B8800A7DD82 /* BnBManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A9BC91882D5B8B8800A7DD82 /* Build configuration list for PBXNativeTarget "BnBManagerTests" */;
+			buildPhases = (
+				A9BC917E2D5B8B8800A7DD82 /* Sources */,
+				A9BC917F2D5B8B8800A7DD82 /* Frameworks */,
+				A9BC91802D5B8B8800A7DD82 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A9BC91872D5B8B8800A7DD82 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A9BC91832D5B8B8800A7DD82 /* BnBManagerTests */,
+			);
+			name = BnBManagerTests;
+			packageProductDependencies = (
+			);
+			productName = BnBManagerTests;
+			productReference = A9BC91822D5B8B8800A7DD82 /* BnBManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		A9C851032D515A3800305344 /* BnBManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A9C851122D515A3A00305344 /* Build configuration list for PBXNativeTarget "BnBManager" */;
@@ -80,6 +128,10 @@
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
+					A9BC91812D5B8B8800A7DD82 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = A9C851032D515A3800305344;
+					};
 					A9C851032D515A3800305344 = {
 						CreatedOnToolsVersion = 16.2;
 					};
@@ -100,11 +152,19 @@
 			projectRoot = "";
 			targets = (
 				A9C851032D515A3800305344 /* BnBManager */,
+				A9BC91812D5B8B8800A7DD82 /* BnBManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A9BC91802D5B8B8800A7DD82 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9C851022D515A3800305344 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -115,6 +175,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A9BC917E2D5B8B8800A7DD82 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A9C851002D515A3800305344 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,7 +191,53 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		A9BC91872D5B8B8800A7DD82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A9C851032D515A3800305344 /* BnBManager */;
+			targetProxy = A9BC91862D5B8B8800A7DD82 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		A9BC91892D5B8B8800A7DD82 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5383233W33;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nickch.BnBManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BnBManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BnBManager";
+			};
+			name = Debug;
+		};
+		A9BC918A2D5B8B8800A7DD82 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5383233W33;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nickch.BnBManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/BnBManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/BnBManager";
+			};
+			name = Release;
+		};
 		A9C851102D515A3A00305344 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -307,6 +420,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A9BC91882D5B8B8800A7DD82 /* Build configuration list for PBXNativeTarget "BnBManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A9BC91892D5B8B8800A7DD82 /* Debug */,
+				A9BC918A2D5B8B8800A7DD82 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A9C850FF2D515A3800305344 /* Build configuration list for PBXProject "BnBManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

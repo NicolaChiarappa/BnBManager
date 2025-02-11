@@ -67,18 +67,21 @@ struct TagGroup: View {
 struct TagLabel: View {
     var index:Int
     var selected:Int
+    let today = Date.now
     var body: some View{
         if(selected==index){
             Text(self.index.description=="0" ? "Today"
                  : self.index.description=="1" ? "Tomorrow"
-                 : "\(self.index.description) days")
+                 :today.addingTimeInterval(TimeInterval(3600*24*index)).formatted(date:.abbreviated, time:.omitted)
+            )
             .tag()
             .selected()
         }
         else{
             Text(self.index.description=="0" ? "Today"
                  : self.index.description=="1" ? "Tomorrow"
-                 : "\(self.index.description) days")
+                 :today.addingTimeInterval(TimeInterval(3600*24*index)).formatted(date:.abbreviated, time:.omitted)
+            )
             .tag()
             
             

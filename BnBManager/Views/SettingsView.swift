@@ -11,6 +11,8 @@ struct SettingsView: View {
     @State var isBooking:Bool=true
     @State var isAir:Bool=true
     @State var isWebsite:Bool=true
+    @State var isCreateRoomActive = false
+    
     
     var body: some View {
         NavigationStack{
@@ -20,6 +22,19 @@ struct SettingsView: View {
                     Toggle("Airbnb", isOn: $isAir )
                     Toggle("Website", isOn: $isWebsite )
                 }
+                Section("Rooms"){
+                    Button("Create new room") {
+                        isCreateRoomActive = true
+                    }
+                    .foregroundStyle(Color(.link))
+                    .sheet(isPresented: $isCreateRoomActive, content: {
+                        CreateRoomView()
+                            
+                    })
+                    
+                    
+                }
+                
             }
             
             .navigationTitle("Settings")

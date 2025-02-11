@@ -9,7 +9,7 @@ import SwiftUI
 @Observable
 class HomeViewModel: ObservableObject{
     var isArrivingActive:Bool = false
-    var isTasksActive:Bool = false
+    
     
     
 }

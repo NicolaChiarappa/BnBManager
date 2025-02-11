@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    var nicola = Person(firstName: "Nicola", lastName: "Chiarappa", birthDate: .now, gender: .male)
-    
-    
     var body: some View {
         TabView{
             Tab(content: {
