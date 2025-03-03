@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct Book{
+struct Booking{
     let ID = UUID()
     let startDate:Date
     let endDate:Date

@@ -13,13 +13,25 @@ import Foundation
 final class BnBManagerTests: XCTestCase {
     
     func testBookDescription(){
+        
         let myDoc=IdDocument(docType: .identityCard, idNumber: "123", firstName: "Nicola", lastName: "Chiarappa", expireDate: Date.distantFuture, releaseDate: Date.distantPast, agencyType: "Comune")
         
-        let me = Person(isGroupLeader: true, firstName: "Nicola", lastName: "Chiarappa", birthDate: Date.now, gender: .male, document: myDoc)
+        let formatter=DateFormatter()
+        formatter.dateStyle = .short
+        let myBirthDate = formatter.date(from: "14/05/01")
         
-        let myGroup = try! Group(leader: me)
+        let me = Guest(firstName: "Nicola", lastName: "Chiarappa", birthDate: myBirthDate!, gender: .male, document: myDoc, isGroupLeader: true)
         
-        print(myGroup.description())
+        do{
+            let myGroup = try Group(leader: me)
+            print(" \n \(myGroup.description()) \n")
+            print(myGroup.getLeader().getAge())
+        }
+        catch{
+            print("error")
+            
+        }
+        
     }
     
 }

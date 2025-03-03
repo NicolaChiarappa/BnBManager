@@ -11,7 +11,7 @@ class CreateRoomViewModel:ObservableObject{
     var amenities = [Bool]()
     
     init(){
-        for _ in 0..<Room.roomAmenities.count{
+        for _ in 0..<Amenity.amenities.count{
             self.amenities.append(false)
         }
     }
@@ -22,7 +22,7 @@ class CreateRoomViewModel:ObservableObject{
         
         for (index, element) in self.amenities.enumerated(){
             if(element==true){
-                amenities.append(Room.roomAmenities[index])
+                amenities.append(Amenity.amenities[index])
             }
         }
         

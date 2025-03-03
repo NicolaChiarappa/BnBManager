@@ -59,8 +59,8 @@ struct CreateRoomView: View {
                     }
                 }
                 Section("amenities"){
-                    ForEach(Room.roomAmenities, id:\.code){ amenity in
-                        let indice = Room.roomAmenities.firstIndex(of: amenity)
+                    ForEach(Amenity.amenities, id:\.code){ amenity in
+                        let indice = Amenity.amenities.firstIndex(of: amenity)
                         Toggle(
                             amenity.name,
                             isOn: $viewModel.amenities[indice!]

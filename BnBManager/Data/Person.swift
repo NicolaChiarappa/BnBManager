@@ -1,26 +1,30 @@
 import Foundation
 
-struct Person{
-    var isGroupLeader:Bool
-    let firstName: String
-    let lastName: String
-    let birthDate: Date
-    let gender: Gender
-    var document:IdDocument?
-    
-    init(isGroupLeader: Bool=false, firstName: String, lastName: String, birthDate: Date, gender: Gender, document: IdDocument? = nil) {
-        self.isGroupLeader = isGroupLeader
-        self.firstName = firstName
-        self.lastName = lastName
-        self.birthDate = birthDate
-        self.gender = gender
-        self.document = document
-    }
+protocol Person:Equatable{
+    var id: UUID {get}
+    var firstName: String {get}
+    var lastName: String {get}
+    var birthDate: Date {get}
+    var gender: Gender {get}
+    var document:IdDocument? {get}
     
     
-    mutating func insertDocument(doc:IdDocument){
-        self.document = doc
-    }
+    
+    
+    mutating func insertDocument(doc:IdDocument)
+    
+    func getName()->String
+    
+    func getBirthDate()->Date
+    
+    func getGender()->Gender
+    
+    func getDocument()->IdDocument
+    
+    func getBirthDateDescription() -> String
+    
+    func getAge()->Int
+    
     
     
 }
