@@ -20,6 +20,14 @@ struct HomeView : View{
                 Spacer()
                 TodoSection()
                     .padding()
+                Spacer()
+                Button("Save"){
+                    homeViewModel.many()
+                }
+                ForEach(homeViewModel.dataManager.rooms, id: \.self){
+                    room in
+                    Text(room.ID.description)
+                }
             }
             .scrollIndicators(.hidden)
             .frame(maxWidth: .infinity)

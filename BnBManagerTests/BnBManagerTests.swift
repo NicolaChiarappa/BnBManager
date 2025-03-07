@@ -18,14 +18,14 @@ final class BnBManagerTests: XCTestCase {
         
         let formatter=DateFormatter()
         formatter.dateStyle = .short
-        let myBirthDate = formatter.date(from: "14/05/01")
+        let myBirthDate = formatter.date(from: "14/02/01")
         
         let me = Guest(firstName: "Nicola", lastName: "Chiarappa", birthDate: myBirthDate!, gender: .male, document: myDoc, isGroupLeader: true)
         
         do{
             let myGroup = try Group(leader: me)
             print(" \n \(myGroup.description()) \n")
-            print(myGroup.getLeader().getAge())
+            
         }
         catch{
             print("error")

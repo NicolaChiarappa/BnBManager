@@ -6,9 +6,17 @@
 //
 import SwiftUI
 
-@Observable
+
 class HomeViewModel: ObservableObject{
     var isArrivingActive:Bool = false
+    
+    let dataManager = DataManager()
+    
+    func many(){
+        dataManager.manyRooms()
+    }
+    
+    
     
     
     

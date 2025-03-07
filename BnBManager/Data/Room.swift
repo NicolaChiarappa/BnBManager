@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Room:Codable{
+struct Room:Codable, Hashable{
     var ID:UUID = UUID()
     let name:String
     let area:Int

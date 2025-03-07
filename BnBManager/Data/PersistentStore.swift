@@ -16,6 +16,24 @@ struct PersistentStore{
         }
         
         container.viewContext.automaticallyMergesChangesFromParent=true
+        container.loadPersistentStores { storeDescription, error in
+            if let error = error as NSError? {}
+        }
         
     }
+    
+    
+    var context : NSManagedObjectContext {container.viewContext}
+    
+    func saveContext(){
+        if context.hasChanges{
+            do{
+                try context.save()
+            }catch let error as NSError{
+                NSLog("Unresolved error \(error.userInfo)")
+            }
+        }
+    }
+    
+    
 }
