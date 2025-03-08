@@ -29,6 +29,12 @@ struct HomeView : View{
                     Text(room.ID.description)
                 }
             }
+            .onAppear(
+                perform: {
+                    print("hello")
+                    homeViewModel.fetch()
+                }
+            )
             .scrollIndicators(.hidden)
             .frame(maxWidth: .infinity)
             

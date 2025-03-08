@@ -34,4 +34,23 @@ final class BnBManagerTests: XCTestCase {
         
     }
     
+    
+    
+    
+    func testCoreData(){
+        let persistent = DataManager()
+        
+        
+        
+        persistent.manyRooms()
+        persistent.fetchRooms()
+        
+        for room in persistent.rooms{
+            print(room.name)
+        }
+        
+        
+        
+    }
+    
 }

@@ -12,6 +12,10 @@ class HomeViewModel: ObservableObject{
     
     let dataManager = DataManager()
     
+    func fetch(){
+        dataManager.fetchRooms()
+    }
+    
     func many(){
         dataManager.manyRooms()
     }
