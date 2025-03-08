@@ -9,6 +9,7 @@ import SwiftUI
 @Observable
 class CreateRoomViewModel:ObservableObject{
     var amenities = [Bool]()
+    var dataManager = DataManager.shared
     
     init(){
         for _ in 0..<Amenity.amenities.count{
@@ -26,7 +27,7 @@ class CreateRoomViewModel:ObservableObject{
             }
         }
         
-        //        rooms.append(Room(name: roomName, minBeds: minBeds, maxBeds: maxBeds, amenities: amenities))
+        dataManager.updateAndSave(room : Room(name: roomName, area: 10, minBeds: minBeds, maxBeds: maxBeds, amenities: amenities))
         
     }
     

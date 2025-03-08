@@ -13,7 +13,7 @@ struct SettingsView: View {
     @State var isWebsite:Bool=true
     @State var isCreateRoomActive = false
     
-    
+    var viewModel = SettingsViewModel()
     var body: some View {
         NavigationStack{
             List{
@@ -23,6 +23,14 @@ struct SettingsView: View {
                     Toggle("Website", isOn: $isWebsite )
                 }
                 Section("Rooms"){
+                    ForEach(viewModel.dataManager.rooms, id: \.self){
+                        room in
+                        Text(room.name)
+                            .onTapGesture {
+                                
+                                viewModel.edit(name:"Michele", roomID: room.id)
+                            }
+                    }
                     Button("Create new room") {
                         isCreateRoomActive = true
                     }
@@ -36,7 +44,16 @@ struct SettingsView: View {
                 }
                 
             }
-            
+            .onAppear{
+                viewModel.fetch()
+            }
+            .toolbar(content: {
+                ToolbarItem{
+                    Button("Delete"){
+                        
+                    }
+                }
+            })
             .navigationTitle("Settings")
         }
     }

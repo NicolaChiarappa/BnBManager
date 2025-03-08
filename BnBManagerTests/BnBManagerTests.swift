@@ -7,6 +7,7 @@
 
 import XCTest
 import Foundation
+import CoreData
 @testable import BnBManager
 
 
@@ -36,19 +37,24 @@ final class BnBManagerTests: XCTestCase {
     
     
     
+
     
     func testCoreData(){
-        let persistent = DataManager()
         
         
+        let persistentForTests = DataManager()
+        DataManager.resetDatabase(persistentContainer: persistentForTests.container)
+        persistentForTests.fetchRooms()
         
-        persistent.manyRooms()
-        persistent.fetchRooms()
+        XCTAssert(persistentForTests.roomsDict.isEmpty)
+        let newRoom = Room(name: "Nicola's", area: 12, minBeds: 2, maxBeds: 5, amenities: [])
         
-        for room in persistent.rooms{
-            print(room.name)
-        }
+        persistentForTests.updateAndSave(room: newRoom)
+        XCTAssert(persistentForTests.roomsDict[newRoom.id]?.name=="Nicola's")
         
+        persistentForTests.roomsDict[newRoom.id]?.name="Giacomo's"
+        persistentForTests.updateAndSave(room:persistentForTests.roomsDict[newRoom.id]!)
+        XCTAssert(persistentForTests.roomsDict[newRoom.id]?.name=="Giacomo's")
         
         
     }

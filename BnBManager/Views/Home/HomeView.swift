@@ -22,17 +22,14 @@ struct HomeView : View{
                     .padding()
                 Spacer()
                 Button("Save"){
-                    homeViewModel.many()
+                    
                 }
-                ForEach(homeViewModel.dataManager.rooms, id: \.self){
-                    room in
-                    Text(room.ID.description)
-                }
+                
             }
             .onAppear(
                 perform: {
                     print("hello")
-                    homeViewModel.fetch()
+                    
                 }
             )
             .scrollIndicators(.hidden)
