@@ -10,6 +10,14 @@ import SwiftUI
 class CreateRoomViewModel:ObservableObject{
     var amenities = [Bool]()
     var dataManager = DataManager.shared
+    var minBeds:Int = 1
+    var maxBeds:Int = 1 {
+        didSet{
+            print(maxBeds)
+        }
+    }
+    var roomName:String = ""
+    var doneDisabled:Bool{minBeds<1 || maxBeds<minBeds || roomName.isEmpty}
     
     init(){
         for _ in 0..<Amenity.amenities.count{
@@ -18,7 +26,7 @@ class CreateRoomViewModel:ObservableObject{
     }
     
     
-    func createNewRoom(roomName:String, minBeds:Int, maxBeds:Int){
+    func createNewRoom(){
         var amenities = [Amenity]()
         
         for (index, element) in self.amenities.enumerated(){

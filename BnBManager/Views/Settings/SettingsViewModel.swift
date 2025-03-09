@@ -21,10 +21,25 @@ class SettingsViewModel{
     }
     
     
+    
+    
     func edit(name:String, roomID: UUID){
         dataManager.roomsDict[roomID]?.name=name
         dataManager.updateAndSave(room: dataManager.roomsDict[roomID]!)
     }
     
+    
+    func delete(roomIndexes: IndexSet){
+        for index in roomIndexes{
+            let roomPos = index
+            let myRoom = dataManager.rooms[roomPos]
+            dataManager.delete(room: myRoom)
+            
+        }
+        
+        
+        
+        
+    }
     
 }

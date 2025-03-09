@@ -9,16 +9,13 @@ import SwiftUI
 
 struct CreateRoomView: View {
     @StateObject var viewModel:CreateRoomViewModel = CreateRoomViewModel()
-    @State var minBeds:Int = 0
-    @State var maxBeds:Int = 0
-    @State var roomName:String = ""
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack{
             Form {
                 Section("name"){
-                    TextField("Room name", text: $roomName)
+                    TextField("Room name", text: $viewModel.roomName)
                 }
                 
                 Section("beds"){
@@ -28,15 +25,15 @@ struct CreateRoomView: View {
                         VStack{
                             Text("Minimum beds".uppercased())
                                 .foregroundStyle(Color.secondary)
-                            Picker("", selection: $minBeds){
-                                ForEach(1..<11) { i in
+                            Picker("", selection: $viewModel.minBeds){
+                                ForEach(1..<11, id: \.self) { i in
                                     Text(i.description)
                                 }
                             }
                             .pickerStyle(.wheel)
                             .frame(height:120)
-                            .onChange(of: minBeds) { oldValue, newValue in
-                                maxBeds=newValue
+                            .onChange(of: viewModel.minBeds) { oldValue, newValue in
+                                viewModel.maxBeds=newValue
                             }
                         }
                         
@@ -44,9 +41,9 @@ struct CreateRoomView: View {
                         VStack{
                             Text("Maximum beds".uppercased())
                                 .foregroundStyle(Color.secondary)
-                            Picker("", selection: $maxBeds) {
-                                ForEach(1..<11) { i in
-                                    if(i>minBeds){
+                            Picker("", selection: $viewModel.maxBeds) {
+                                ForEach(1..<11, id:\.self) { i in
+                                    if(i>=viewModel.minBeds){
                                         Text(i.description)
                                     }
                                     
@@ -83,14 +80,10 @@ struct CreateRoomView: View {
                     ToolbarItem {
                         
                         Button("Done"){
-                            viewModel
-                                .createNewRoom(
-                                    roomName: roomName,
-                                    minBeds: minBeds,
-                                    maxBeds: maxBeds
-                                )
+                            viewModel.createNewRoom()
                             dismiss()
                         }
+                        .disabled(viewModel.doneDisabled)
                         .bold()
                     }
                 })

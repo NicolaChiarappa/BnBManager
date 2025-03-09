@@ -26,11 +26,12 @@ struct SettingsView: View {
                     ForEach(viewModel.dataManager.rooms, id: \.self){
                         room in
                         Text(room.name)
-                            .onTapGesture {
-                                
-                                viewModel.edit(name:"Michele", roomID: room.id)
-                            }
+                            
+                            
                     }
+                    .onDelete(perform: viewModel.delete)
+                    
+                    
                     Button("Create new room") {
                         isCreateRoomActive = true
                     }
@@ -44,16 +45,11 @@ struct SettingsView: View {
                 }
                 
             }
+            
             .onAppear{
                 viewModel.fetch()
             }
-            .toolbar(content: {
-                ToolbarItem{
-                    Button("Delete"){
-                        
-                    }
-                }
-            })
+            
             .navigationTitle("Settings")
         }
     }

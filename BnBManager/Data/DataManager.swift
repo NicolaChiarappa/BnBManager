@@ -15,7 +15,7 @@ class DataManager: NSObject{
     static func resetDatabase(persistentContainer: NSPersistentContainer) {
         let context = persistentContainer.viewContext
         let entities = persistentContainer.managedObjectModel.entities
-
+        
         for entity in entities {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entity.name!)
             let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -28,7 +28,7 @@ class DataManager: NSObject{
             }
         }
     }
-
+    
     
     
     var roomsDict : [UUID:Room] = [:]
@@ -55,7 +55,7 @@ class DataManager: NSObject{
         roomFRC.delegate = self
         fetchRooms()
     }
-
+    
     
     
     func saveData() {
@@ -73,7 +73,7 @@ class DataManager: NSObject{
         
         if let newRooms = roomFRC.fetchedObjects{
             self.roomsDict = Dictionary(uniqueKeysWithValues: newRooms.map{
-                ($0.id ?? UUID(), Room(roomMO: $0))
+                ($0.id!, Room(roomMO: $0))
             })
         }
     }
@@ -116,9 +116,10 @@ extension DataManager : NSFetchedResultsControllerDelegate{
     
     
     
-// MARK: -Room methods
+    // MARK: -Room methods
     
-    func update(roomModel: RoomModel, room: Room){
+    ///update RoomModel using a Room object data
+    private func update(roomModel: RoomModel, room: Room){
         roomModel.area = Int16(room.area)
         roomModel.id = room.id
         roomModel.name = room.name
@@ -127,7 +128,9 @@ extension DataManager : NSFetchedResultsControllerDelegate{
         roomModel.valuation = room.valuation
     }
     
-    
+    ///Fetch a RoomModel based on its id
+    ///If not exists create it
+    ///Update an existing RoomMode
     func updateAndSave(room:Room){
         let fetchedRoom = fetchFirst(RoomModel.self, predicate: NSPredicate(format: "id = %@", room.id as CVarArg))
         
@@ -145,14 +148,30 @@ extension DataManager : NSFetchedResultsControllerDelegate{
         saveData()
     }
     
-    func roomMO(from room: Room){
+    
+    ///Create new RoomModel from a Room object
+    private func roomMO(from room: Room){
         let roomModel = RoomModel(context: self.context)
         roomModel.id = room.id
         update(roomModel: roomModel, room: room)
     }
     
     
-    
+    ///Delete a RoomModel from store
+    func delete(room:Room){
+        let fetchedRoom = fetchFirst(RoomModel.self, predicate: NSPredicate(format: "id = %@", room.id as CVarArg))
+        
+        switch fetchedRoom{
+        case .success(let foundRoom):
+            if let roomMo = foundRoom{
+                context.delete(roomMo)
+            }
+            saveData()
+            
+        default: return
+        }
+        
+    }
     
 }
 

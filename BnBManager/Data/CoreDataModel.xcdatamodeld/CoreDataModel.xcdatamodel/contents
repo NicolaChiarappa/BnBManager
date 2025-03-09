@@ -3,6 +3,10 @@
     <entity name="AmenityMO" representedClassName=".AmenityModel" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="roomMOs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RoomMO" inverseName="amenityMOs" inverseEntity="RoomMO"/>
+        <fetchedProperty name="fetchedProperty" optional="YES">
+            <fetchRequest name="fetchedPropertyFetchRequest" entity="AmenityMO"/>
+        </fetchedProperty>
     </entity>
     <entity name="RoomMO" representedClassName=".RoomModel" syncable="YES" codeGenerationType="class">
         <attribute name="area" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
@@ -11,5 +15,6 @@
         <attribute name="minBeds" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="valuation" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="amenityMOs" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="AmenityMO" inverseName="roomMOs" inverseEntity="AmenityMO"/>
     </entity>
 </model>
